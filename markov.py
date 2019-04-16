@@ -45,54 +45,23 @@ def make_chains(text_string):
     # split text string into list of words
     words = text_string.split()
 
-    # make list of tuples
-    word_pairs = []
-
     # loop over list of words by index thru len - 1
 
     chains = {}
 
-    for i in range(len(words) - 1):
+    for i in range(len(words) - 2):
 
         first_word = words[i]
         second_word = words[i+1]
 
         pair = (first_word, second_word)
 
-        # if index of second word is not the last word in list:
-        if i + 1 != (len(words) - 1):
+        third_word = words[i+2]
 
-            third_word = words[i+2]
-
-            chains[pair] = chains.get(pair, [])
-            chains[pair].append(third_word)
-
-        # if key (first_word, second_word) not in chains, add it
-        # if there is a third word, add that to the  key's list
-        # if no third word, add the first word in words list 
-        # word_pairs.append((first_word, second_word))
-
-
-    # add each word pair tuple as a key in chains dict 
-    # with val of empty list
-   
-
-    # for pair in word_pairs:
-    #     chains[pair] = []
-
-    # look for would 
-        # for each time - look for whether followed by you
-            # add the word after you to list 
-
-    # for i in range(len(words) - 1):
-    #     if words[i:i+2] == 
-
-
-    # for chain in chains:
-           
+        chains[pair] = chains.get(pair, [])
+        chains[pair].append(third_word)
 
     print(chains)
-    # your code goes here
 
     return chains
 
