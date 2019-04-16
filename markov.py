@@ -12,7 +12,12 @@ def open_and_read_file(file_path):
 
     # your code goes here
 
+    file = open(text_string).read()
+    print(file)
+
     return "Contents of your file as one long string"
+
+open_and_read_file("green-eggs.txt")
 
 
 def make_chains(text_string):
@@ -40,6 +45,7 @@ def make_chains(text_string):
         [None]
     """
 
+
     chains = {}
 
     # your code goes here
@@ -57,15 +63,15 @@ def make_text(chains):
     return " ".join(words)
 
 
-input_path = "green-eggs.txt"
+# input_path = "green-eggs.txt"
 
-# Open the file and turn it into one long string
-input_text = open_and_read_file(input_path)
+# # Open the file and turn it into one long string
+# input_text = open_and_read_file(input_path)
 
-# Get a Markov chain
-chains = make_chains(input_text)
+# # Get a Markov chain
+# chains = make_chains(input_text)
 
-# Produce random text
-random_text = make_text(chains)
+# # Produce random text
+# random_text = make_text(chains)
 
-print(random_text)
+# print(random_text)
