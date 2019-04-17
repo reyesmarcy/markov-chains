@@ -72,22 +72,10 @@ def make_text(chains):
     # We are adding to the list, a randomly selected pair of words from the 
     # chains dictionary keys to start our new sentence 
     current_key = random.choice(list(chains.keys()))
-    first_word = current_key[0]
-    second_word = current_key[1]
+    first_word, second_word = current_key
 
     sentence_words.append(first_word)
     sentence_words.append(second_word)
-
-    # Set a new randomly selected next word based on the values from the 
-    # key pair above and added to list of sentence words
-    next_word = random.choice(chains[current_key])
-    sentence_words.append(next_word)
-
-
-# After the first key is taken: 
-
-    # We are updating current key to use for the lookup 
-    current_key = (second_word, next_word)
 
     # While the current key is a valid key
     while current_key in chains: 
@@ -101,7 +89,9 @@ def make_text(chains):
     return " ".join(sentence_words)
 
 
+# input_path = "gettysburg.txt"
 input_path = "green-eggs.txt"
+# input_path = "blank_space.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
