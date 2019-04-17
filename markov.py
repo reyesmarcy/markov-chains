@@ -66,6 +66,14 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
+
+    # thoughts for tomorrow:
+
+    # change key to be of n length
+    # change third word to be at the n+1 index
+
+
+
     # split text string into list of words
     words = text_string.split()
 
@@ -73,12 +81,16 @@ def make_chains(text_string):
 
     chains = {}
 
-    for i in range(len(words) - 2):
+    for i in range(len(words) - 2): # change to - n
+
+        # consider slice to make key tuple
 
         first_word = words[i]
         second_word = words[i+1]
 
-        pair = (first_word, second_word)
+        pair = (tuple(words[i:i+2]))
+
+        # pair = (first_word, second_word)
 
         third_word = words[i+2]
 
