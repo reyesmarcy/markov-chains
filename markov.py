@@ -15,14 +15,12 @@ def open_and_read_file(file_path):
     file = open(file_path).read()
     bad_characters = ["@", ",", ":", ";","--", "-", "*","(", ")", "^", "+", "_", "~"]
     
-    sentence_ending_punctuation = [".", "?", "!"]
 
     for char in bad_characters:
         file = file.replace(char, "")
-        print("replaced:", char)
 
 
-
+    file = file.lower()
     return file
 
 
@@ -103,8 +101,6 @@ def make_text(chains, output_length = 200):
     # chains dictionary keys to start our new sentence 
     current_key = random.choice(list(chains.keys()))
 
-    print(current_key)
-    print()
 
     sentence_words = list(current_key)
 
@@ -117,7 +113,13 @@ def make_text(chains, output_length = 200):
 
     # uncomment to control length
     sentence_length = len(sentence_words)
-    while current_key in chains and sentence_length < output_length: 
+
+    sentence_ending_punctuation = [".", "?", "!"]
+
+    current_last_word_char = sentence_words[-1][-1]
+
+
+    while current_key in chains and current_last_word_char not in sentence_ending_punctuation and sentence_length < output_length: 
 
     # while current_key in chains: 
     # Randomly select next word and add to list of sentence words
@@ -129,9 +131,8 @@ def make_text(chains, output_length = 200):
         current_key.append(next_word)
         current_key = tuple(current_key)
         
-        print(current_key)
-        print()
         sentence_length = len(sentence_words) # uncomment for control length
+        current_last_word_char = sentence_words[-1][-1]
 
     # Turn the list into a string
     return " ".join(sentence_words)
@@ -143,7 +144,7 @@ def make_text(chains, output_length = 200):
 input_text = combine_files()
 
 # Get a Markov chain
-chains = make_chains(input_text, 3)
+chains = make_chains(input_text, 2)
 # print(chains)
 print()
 # # Produce random text
