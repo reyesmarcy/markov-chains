@@ -42,7 +42,7 @@ def combine_files():
     return all_text
 
 
-def make_chains(text_string):
+def make_chains(text_string, n = 2):
     """Take input text as string; return dictionary of Markov chains.
 
     A chain will be a key that consists of a tuple of (word1, word2)
@@ -81,21 +81,36 @@ def make_chains(text_string):
 
     chains = {}
 
-    for i in range(len(words) - 2): # change to - n
+    for i in range(len(words) - n): # change to - n
 
         # consider slice to make key tuple
 
-        first_word = words[i]
-        second_word = words[i+1]
+        # (words[i],....,words[i+n])
 
-        pair = (tuple(words[i:i+2]))
+        # first_word = words[i]
+        # second_word = words[i + 1]
+        # third_word = words[i + 2]
+        # fourth_word = words[i + 3]
+
+        tuple_key = (tuple(words[i:(i + n)]))
+
+        word_to_add_to_list = words[i + n]
+
+        # first_word = words[i]
+        # second_word = words[i+1]
+
+        # pair = (tuple(words[i:i+2]))
 
         # pair = (first_word, second_word)
 
-        third_word = words[i+2]
+        # third_word = words[i+2]
 
-        chains[pair] = chains.get(pair, [])
-        chains[pair].append(third_word)
+        # chains[pair] = chains.get(pair, [])
+        # chains[pair].append(third_word)
+
+        chains[tuple_key] = chains.get(tuple_key, [])
+        chains[tuple_key].append(word_to_add_to_list)
+
 
     return chains
 
@@ -145,9 +160,9 @@ def make_text(chains):
 input_text = combine_files()
 
 # Get a Markov chain
-chains = make_chains(input_text)
-
+chains = make_chains(input_text, 4)
+print(chains)
 # # Produce random text
-random_text = make_text(chains)
+# random_text = make_text(chains)
 
-print(random_text)
+# print(random_text)
